@@ -1,0 +1,23 @@
+<div>Create Folder</div>
+<div>
+  <form id="CreateFolder">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+    <label hidden="true" for="parentId">parentId:</label>
+    <input
+      hidden="true"
+      type="number"
+      id="parentId"
+      value="0"
+      name="parentId"
+      required
+    />
+    <br />
+    <button
+      type="button"
+      onclick="submitFormPost('api/Folders','CreateFolder')"
+    >
+      Submit
+    </button>
+  </form>
+</div>

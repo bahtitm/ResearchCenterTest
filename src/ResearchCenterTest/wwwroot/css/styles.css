@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+.buttons{
+    display: flex;
+    background-color: gainsboro;
+    justify-content:space-between;
+    width: 50%;
+    
+}
+input:invalid {border-color: red; }
+    input:valid { border-color: green;}
+
+img {
+    width: 15px;
+
+}
+
+#FileCard
+{
+ max-width: 500px;   
+}

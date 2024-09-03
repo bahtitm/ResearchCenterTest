@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Page</title>
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/sidebarContent.css" />
+    <link rel="stylesheet" href="css/treeStyle.css" />
+    <link rel="stylesheet" href="css/tooltip.css" />
+  </head>
+  <style></style>
+  <body>
+    <div class="buttons">
+      <div class="menyu_button">
+        <button onclick="clikcCreateFolder('#createFolder')">
+          Создать папку
+        </button>
+      </div>
+      <div class="menyu_button">
+        <button onclick="clikcRemoveEntity()">Удалить папку</button>
+      </div>
+      <div class="menyu_button">
+        <button onclick="clikcCreateFolder('#createFile')">
+          Загрузить файл
+        </button>
+      </div>
+      <div class="menyu_button">
+        <button onclick="DownLoadFile()">Скачать файл</button>
+      </div>
+      <div class="menyu_button">
+        <button onclick="clikcRemoveEntity()">Удалить файл</button>
+      </div>
+      <div class="menyu_button">
+        <button onclick="updateName()">Переименовать</button>
+      </div>
+    </div>
+    <main>
+      <div class="container">
+        <div class="sidebar">
+          <div id="tree-container"></div>
+        </div>
+
+        <!-- Content -->
+        <div id="content" class="content">
+          <h1>Welcome to the Content Page</h1>
+          <p>
+            This is the content area. It is located on the right side of the
+            sidebar.
+          </p>
+          <p>
+            Use this space to add your main content, such as articles, forms, or
+            any other information.
+          </p>
+        </div>
+      </div>
+    </main>
+    <script>
+      //const host=window.location.href;
+      const host = "https://localhost:7083/";
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/treeScript.js"></script>
+    <script src="js/fetchScript.js"></script>
+    <script src="js/updatingForm.js"></script>
+    <script src="js/fileExtentionSelectBox.js"></script>
+    <script src="js/contetnMutationObserver.js"></script>
+    <script src="js/loadFile.js"></script>
+    <script>
+      function DownLoadFile() {
+        let selectedTreeNode = document.getElementsByClassName("selected");
+        if (selectedTreeNode) {
+          let id = selectedTreeNode[0].getAttribute("id");
+          let fileId = selectedTreeNode[0].getAttribute("fileId");
+          let isFile = selectedTreeNode[0].getAttribute("isFile");
+          let name = selectedTreeNode[0].textContent;
+          if (isFile === "true") {
+            downloadFileFech("api/AppFiles/Download", fileId);
+          }
+        }
+      }
+      function updateName() {
+        let selectedTreeNode = document.getElementsByClassName("selected");
+        if (selectedTreeNode) {
+          let id = selectedTreeNode[0].getAttribute("id");
+          let fileId = selectedTreeNode[0].getAttribute("fileId");
+          let isFile = selectedTreeNode[0].getAttribute("isFile");
+          let name = selectedTreeNode[0].textContent;
+
+          let confirmText =
+            isFile === "true"
+              ? `"Do you want change file name: '${name}'' "`
+              : `"Do you want change folder name: '${name}'"`;
+          var confirmAction = confirm(confirmText);
+
+          if (confirmAction) {
+            var userInput = prompt("Please enter your value:");
+            if (userInput !== null) {
+              if (isFile === "true") {
+                updateNameRequest("api/AppFiles/UpdateName", userInput, fileId);
+              } else {
+                updateNameRequest("api/Folders/UpdateName", userInput, id);
+              }
+            } else {
+            }
+          } else {
+          }
+        }
+      }
+
+      function clikcCreateFolder(href) {
+        window.location.href = href;
+      }
+      function clikcRemoveEntity() {
+        let selectedTreeNode = document.getElementsByClassName("selected");
+        if (selectedTreeNode) {
+          let id = selectedTreeNode[0].getAttribute("id");
+          let fileId = selectedTreeNode[0].getAttribute("fileId");
+          let isFile = selectedTreeNode[0].getAttribute("isFile");
+          if (isFile == "false") {
+            RemoveEntity("api/Folders", id);
+          } else {
+            RemoveEntity("api/AppFiles", fileId);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

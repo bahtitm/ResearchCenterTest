@@ -1,0 +1,41 @@
+.tree ul {
+    list-style-type: none;
+    
+    margin: 0;
+}
+li {
+    margin: 0;
+    padding: 5px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+.collapsible {
+    cursor: pointer;
+    display: contents;
+    align-items: center;
+}
+.icon {
+    margin-right: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+.icon::before {
+    content: '+';
+    display: inline-block;
+    margin-right: 5px;
+}
+.collapsible.open .icon::before {
+    content: '-';
+}
+.nested {
+    display: none;
+    margin: 0;
+    padding-left: 15px;
+}
+.nested.show {
+    display: block;
+}
+.selected {
+    background-color: #b3d9ff;
+}

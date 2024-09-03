@@ -1,0 +1,32 @@
+<div>Create File</div>
+<form id="CreateFile">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="discribtion">Discribtion:</label>
+  <input type="text" id="discribtion" name="discribtion" required />
+
+  <label for="content">Content:</label>
+  <input type="text" id="content" name="content" required />
+
+  <input
+    hidden="true"
+    type="number"
+    id="folderId"
+    value="1"
+    min="1"
+    name="folderId"
+    required
+  />
+
+  <label for="fileExtensionId">fileExtensionId:</label>
+  <select name="fileExtensionId" id="fileExtentionSelectBox"></select>
+
+  <label for="fileInput">Content:</label>
+  <input type="file" id="fileInput" name="file" />
+
+  <br />
+  <button type="button" onclick="submitFormPost('api/AppFiles','CreateFile')">
+    Submit
+  </button>
+</form>
