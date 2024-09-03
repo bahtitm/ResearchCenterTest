@@ -14,7 +14,7 @@ namespace InfoTehTestTask.Data
 
         public async Task MigrateAsync()
         {
-            await appDbContext.Database.MigrateAsync();
+           await appDbContext.Database.MigrateAsync();
 
 
         }

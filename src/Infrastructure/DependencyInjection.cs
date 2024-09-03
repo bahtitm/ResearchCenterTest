@@ -11,10 +11,10 @@ namespace Infrastructure
             services.AddDbContext<AppDbContext>((sp, options) =>
             {
                 options.UseLazyLoadingProxies();
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
            
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<AppDbContext>());
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<AppDbContext>());
 
 
             return services;

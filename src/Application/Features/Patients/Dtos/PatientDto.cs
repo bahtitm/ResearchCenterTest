@@ -9,5 +9,7 @@
         public string? Address { get; set; }
         public string? BirthDay { get; set; }
         public Gender Gender { get; set; }
+
+        public string? TerritorialUnitNumber { get; set; }
     }
 }

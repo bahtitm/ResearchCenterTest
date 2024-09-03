@@ -10,7 +10,10 @@ namespace Application.Features.Patients.MappingProfile
         {
             CreateMap<CreatePatientCommand, Patient>();
             CreateMap<UpdatePatientCommand, Patient>();
-            CreateMap<Patient, PatientDto>();
+            CreateMap<Patient, PatientDto>()
+                .ForMember(ds=>ds.TerritorialUnitNumber, op=>op.MapFrom(sr=>sr.TerritorialUnit.Nomber));
+            CreateMap<Patient, PatientDetailDto>();
+
         }
     }
 }

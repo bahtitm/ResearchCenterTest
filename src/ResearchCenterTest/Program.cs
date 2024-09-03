@@ -73,24 +73,18 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 
-app.UseAuthorization();
+
 app.MapControllers();
 
 
-app.MapFallbackToFile("index.html");
 
 
-//app.UseSpa(spa =>
-//{
-//    spa.Options.SourcePath = "ClientApp";
-//});
+
+
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<DatabaseMigrator>();
     await db.MigrateAsync();
 }
-app.UseExceptionHandler(builder =>
-{
 
-});
 app.Run();
